@@ -1,6 +1,12 @@
 package io.mymicroservice.moviecatalogservice.models;
 
-public class Rating {
+import java.io.Serializable;
+
+public class Rating implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String movieId;
 	private int rating;
 	public Rating(String movieId, int rating) {
@@ -8,6 +14,10 @@ public class Rating {
 		this.movieId = movieId;
 		this.rating = rating;
 	}
+	
+	public Rating() {
+	}
+
 	public String getMovieId() {
 		return movieId;
 	}
