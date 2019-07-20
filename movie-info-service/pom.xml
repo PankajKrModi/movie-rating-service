@@ -6,14 +6,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> 
 	</parent>
 	<groupId>io.mymicroservice</groupId>
 	<artifactId>movie-info-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>movie-info-service</name>
 	<description>get info about movie</description>
-
+	
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
@@ -27,6 +27,12 @@
 		<dependency>
     		<groupId>org.springframework.cloud</groupId>
     		<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    		      <exclusions>
+	        <exclusion> 
+	          <groupId>org.springframework.cloud</groupId>
+	          <artifactId>spring-cloud-netflix-ribbon</artifactId>
+	        </exclusion>
+	      </exclusions> 
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
