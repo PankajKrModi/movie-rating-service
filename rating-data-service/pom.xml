@@ -13,12 +13,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>rating-data-service</name>
 	<description>rating data service</description>
-
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -34,7 +32,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -45,8 +42,7 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>
-	
+	</dependencyManagement>	
 	<build>
 		<plugins>
 			<plugin>
@@ -55,5 +51,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
