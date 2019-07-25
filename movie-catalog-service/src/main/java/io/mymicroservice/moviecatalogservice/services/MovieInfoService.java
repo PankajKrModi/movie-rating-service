@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 import io.mymicroservice.moviecatalogservice.models.CatalogItem;
 import io.mymicroservice.moviecatalogservice.models.Movie;
@@ -15,13 +16,17 @@ public class MovieInfoService {
 	@Autowired
 	RestTemplate restTemplate ; 
 	
-	@HystrixCommand(fallbackMethod ="getFallbackCatalogItem")
+	@HystrixCommand(fallbackMethod ="getFallbackCatalogItem",
+			commandProperties = {
+					@HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
+					@HystrixProperty(name="circuitBreaker.requestVolumeThreshold", value = "5"),
+					@HystrixProperty(name="circuitBreaker.errorThresholdPercentage", value = "50"),
+					@HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds", value = "5000"),
+		})
 	public CatalogItem getCatalogItem(Rating rating) {
 		
-		Movie movieObject = restTemplate.getForObject("http://movie-info-service/movies/"+rating.getMovieId(), Movie.class);
-//				webClientBuilder.build().get().uri("http://movie-info-service/movies/"+rating.getMovieId())
-//				.retrieve().bodyToMono(Movie.class).block(); //block turns async to sync call
-
+		Movie movieObject = restTemplate.
+				getForObject("http://movie-info-service/movies/"+rating.getMovieId(), Movie.class);
 		return new CatalogItem(movieObject.getName(), movieObject.getDesc(), rating.getRating());
 
 	}
