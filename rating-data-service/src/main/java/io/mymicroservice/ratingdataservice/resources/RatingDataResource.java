@@ -15,9 +15,10 @@ public class RatingDataResource {
 	@RequestMapping("/users/{userId}")
 	public UserRating getRating(@PathVariable("userId") String userId) {
 		UserRating userRating = new UserRating();
+		userRating.setUserId(userId);
 		userRating.setUserRating(Arrays.asList(
 				new Rating("123",4),
-				new Rating("124",3)
+				new Rating("128",3)
 				));
 		return userRating;
 	}

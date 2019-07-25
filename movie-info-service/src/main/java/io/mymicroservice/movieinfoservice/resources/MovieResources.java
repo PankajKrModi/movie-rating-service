@@ -25,7 +25,6 @@ public class MovieResources {
 	public Movie getMovieInfo(@PathVariable("movieId") String movieId) {
 		MovieSummary movieSummary = restTemplate.getForObject(
 				"https://api.themoviedb.org/3/movie/"+movieId+"?api_key="+apiKey, MovieSummary.class);
-//				"https://api.themoviedb.org/3/movie/"+movieId+"?api_key="+apiKey, MovieSummary.class);
 		return new Movie(movieId,movieSummary.getTitle(),movieSummary.getOverview());
 	}
 }
